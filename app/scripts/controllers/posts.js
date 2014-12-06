@@ -7,11 +7,13 @@
  * # MainCtrl
  * Controller of the yolkfulApp
  */
-(function(global, Firebase) {
+angular.module('yolkfulApp')
+  .controller('PostsCtrl', function ($scope, $location, Post) {
+  	$scope.posts = Post.all;
+  	$scope.post = {url: 'http://', title: ''};
 
-	angular.module('yolkfulApp')
-	  .controller('PostsCtrl', function ($scope) {
-	   
-	  });
+    $scope.deletePost = function (post) {
+	    Post.delete(post);
+	  };
 
-})(window, Firebase);
+  });

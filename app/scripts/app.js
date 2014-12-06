@@ -19,14 +19,21 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase'
   ])
+  .constant('FIREBASE_URL', 'https://yolkful.firebaseio.com/')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/posts', {
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl'
-      }).when('/', {
+      })
+      .when('/posts/:postId', {
+        templateUrl: 'views/showpost.html',
+        controller: 'PostViewCtrl'
+      })
+      .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
