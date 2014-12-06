@@ -1,3 +1,5 @@
+/* global app:true */
+/* exported app */
 'use strict';
 
 /**
@@ -21,7 +23,10 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/posts', {
+        templateUrl: 'views/posts.html',
+        controller: 'PostsCtrl'
+      }).when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
