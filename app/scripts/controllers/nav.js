@@ -8,7 +8,9 @@
  * Controller of the yolkfulApp
  */
 angular.module('yolkfulApp')
-  .controller('NavCtrl', function ($scope, $location, Post) {
+  .controller('NavCtrl', function ($scope, $location, Post, Auth) {
+  	$scope.signedIn = Auth.signedIn;
+	$scope.logout = Auth.logout;
   	$scope.post = {url: 'http://', title: ''};
 
   	$scope.submitPost = function () {

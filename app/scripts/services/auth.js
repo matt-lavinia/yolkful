@@ -1,37 +1,37 @@
 'use strict';
 
 angular.module('yolkfulApp')
-.factory('Auth', function ($firebaseSimpleLogin, FIREBASE_URL, $rootScope) {
+.factory('Auth', function ($firebaseAuth, FIREBASE_URL, $rootScope) {
   var ref = new Firebase(FIREBASE_URL);
-  var auth = $firebaseSimpleLogin(ref);
+  var auth = $firebaseAuth(ref);
 
   var Auth = {
     register: function (user) {
       return auth.$createUser(user.email, user.password);
     },
+    createProfile: function (user) {
+      var profile = {
+        username: user.username,
+        md5_hash: user.md5_hash
+      };
+
+      var profileRef = $firebase(ref.child('profile'));
+      return profileRef.$set(user.uid, profile);
+    },
     login: function (user) {
-      return auth.$login('password', user);
+      return auth.$authWithPassword(user);
     },
     logout: function () {
-      auth.$logout();
+      auth.$unauth();
     },
     resolveUser: function() {
-      return auth.$getCurrentUser();
+      return auth.$getAuth();
     },
     signedIn: function() {
-      return !!Auth.user.provider;
+      return !!auth.$getAuth();
     },
     user: {}
   };
-
-  $rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
-    console.log('logged in');
-    angular.copy(user, Auth.user);
-  });
-  $rootScope.$on('$firebaseSimpleLogin:logout', function() {
-    console.log('logged out');
-    angular.copy({}, Auth.user);
-  });
 
   return Auth;
 });

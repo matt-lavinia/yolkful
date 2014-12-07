@@ -33,13 +33,14 @@ angular
         templateUrl: 'views/showpost.html',
         controller: 'PostViewCtrl'
       })
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function(Auth) {
+            return Auth.resolveUser();
+          }
+        }
       })
       .when('/register', {
         templateUrl: 'views/register.html',
@@ -49,6 +50,10 @@ angular
             return Auth.resolveUser();
           }
         }
+      })
+      .when('/', {
+        templateUrl: 'views/posts.html',
+        controller: 'PostsCtrl'
       })
       .otherwise({
         redirectTo: '/'
