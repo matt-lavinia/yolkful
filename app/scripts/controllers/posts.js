@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name yolkfulApp.controller:MainCtrl
+ * @name yolkfulApp.controller:PostsCtrl
  * @description
- * # MainCtrl
- * Controller of the yolkfulApp
+ * # PostsCtrl
+ * Controller for the Posts section of the yolkfulApp
  */
 angular.module('yolkfulApp')
   .controller('PostsCtrl', function ($scope, $location, Post) {

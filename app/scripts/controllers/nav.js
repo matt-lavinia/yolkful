@@ -5,7 +5,7 @@
  * @name yolkfulApp.controller:NavCtrl
  * @description
  * # NavCtrl
- * Controller of the yolkfulApp
+ * Navigation controller for the top nav
  */
 angular.module('yolkfulApp')
   .controller('NavCtrl', function ($scope, $location, Post, Auth) {

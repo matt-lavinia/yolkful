@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc function
+ * @name yolkfulApp.services:Auth
+ * @description
+ * # Auth
+ * Tied to the Firebase Auth framework, these are extensions of that platform.
+ */
 angular.module('yolkfulApp')
 .factory('Auth', function ($firebaseAuth, FIREBASE_URL, $rootScope) {
   var ref = new Firebase(FIREBASE_URL);
@@ -19,7 +26,10 @@ angular.module('yolkfulApp')
       return profileRef.$set(user.uid, profile);
     },
     login: function (user) {
-      return auth.$authWithPassword(user);
+      return auth.$authWithPassword( user, null,
+        {
+          remember: "sessionOnly" // Keep the session length for auth only.
+        });
     },
     logout: function () {
       auth.$unauth();

@@ -22,17 +22,25 @@ angular
     'ngTouch',
     'firebase'
   ])
+  
   .constant('FIREBASE_URL', 'https://yolkful.firebaseio.com/')
+  
   .config(function ($routeProvider) {
     $routeProvider
+      
+      /* Post Recap Page */
       .when('/posts', {
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl'
       })
+
+      /* Individual Post Details */
       .when('/posts/:postId', {
         templateUrl: 'views/showpost.html',
         controller: 'PostViewCtrl'
       })
+
+      /* Login Page */
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'AuthCtrl',
@@ -42,6 +50,8 @@ angular
           }
         }
       })
+
+      /* Registration Page */
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'AuthCtrl',
@@ -51,6 +61,8 @@ angular
           }
         }
       })
+
+      /* All Else */
       .when('/', {
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl'

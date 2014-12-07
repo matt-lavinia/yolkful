@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc function
+ * @name yolkfulApp.services.Post
+ * @description
+ * # Post
+ * Post service provides a way to do basic CRUD operations with posts to a Firebase data store.
+ */
 angular.module('yolkfulApp')
 .factory('Post', function ($firebase, FIREBASE_URL) {
   var ref = new Firebase(FIREBASE_URL);
