@@ -8,7 +8,7 @@
  * Controller for the items surrounding Authentication
  */
 angular.module('yolkfulApp')
-	.controller('AuthCtrl', function ($scope, $location, Auth, user) {
+	.controller('AuthCtrl', function ($scope, $location, Auth, user, $firebase) {
 	  if (user) {
 	    $location.path('/');
 	  }
@@ -22,15 +22,15 @@ angular.module('yolkfulApp')
 	  };
 
 	  $scope.register = function () {
-	    Auth.register($scope.user).then(function() {
-	      user.username = $scope.user.username;
-	      return Auth.createProfile(user);
-	    }).then(function() {
-	      return Auth.login($scope.user).then(function() {
-	        $location.path('/');
-	      }, function(error) {
-	      	$scope.error = error.toString();
-	    	});
-	    });
+	    Auth.register($scope.user).then(function(user) {
+		    return Auth.login($scope.user).then(function(user) {
+		      user.username = $scope.user.username;
+		      return Auth.createProfile(user);
+		    }).then(function() {
+		      $location.path('/');
+		    });
+		  }, function(error) {
+		    $scope.error = error.toString();
+		  });
 	  };
 	});

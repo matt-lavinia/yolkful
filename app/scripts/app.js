@@ -22,7 +22,7 @@ angular
     'ngTouch',
     'firebase'
   ])
-  
+
   .constant('FIREBASE_URL', 'https://yolkful.firebaseio.com/')
   
   .config(function ($routeProvider) {
@@ -38,6 +38,12 @@ angular
       .when('/posts/:postId', {
         templateUrl: 'views/showpost.html',
         controller: 'PostViewCtrl'
+      })
+
+      /* User Profile */
+      .when('/users/:userId', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       })
 
       /* Login Page */
